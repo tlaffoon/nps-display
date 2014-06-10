@@ -11,7 +11,7 @@ function calcAVG($scores) {
 		}
 	}
 
-	return number_format(array_sum($avg) / count($avg), 2, '.', '');
+	return number_format(array_sum($avg) / count($avg), 1, '.', '');
 }
 
 function parseCSV($filename, $delimiter=',')
@@ -96,21 +96,8 @@ $averageScore = calcAVG($entries);
 <div class="navbar">
 	<div class="container-fluid">
 		<div class="navbar-header">
-		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		        <a class="navbar-brand" href="http://nps.dev/">Badlands Cohort | Promoter.io</a>
-		      </div>
-		      
-		      <form class="navbar-form navbar-right" role="search">
-		        <div class="form-group">
-		          <input type="text" class="form-control" placeholder="Search">
-		        </div>
-		        <button type="submit" class="btn btn-default">Submit</button>
-		      </form>
+		    <a class="navbar-brand" href="http://nps.dev/">Badlands Cohort | Promoter.io</a>
+		</div>
 	</div>
 </div>
 
