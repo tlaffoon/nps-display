@@ -14,6 +14,11 @@ function calcAVG($scores) {
 	return number_format(array_sum($avg) / count($avg), 1, '.', '');
 }
 
+function calcResponseRate($parsed, $entries) {
+	$rate = (count($entries) / count($parsed)) * 100;
+	return number_format($rate);
+}
+
 function parseCSV($filename, $delimiter=',')
 {
     if(!file_exists($filename) || !is_readable($filename))
@@ -81,6 +86,7 @@ function makeEntries($parsed) {
 $parsed = parseCSV($filename);
 $entries = makeEntries($parsed);
 $averageScore = calcAVG($entries);
+$rate = calcResponseRate($parsed, $entries);
 
 ?>
 
@@ -96,14 +102,18 @@ $averageScore = calcAVG($entries);
 <div class="navbar">
 	<div class="container-fluid">
 		<div class="navbar-header">
-		    <a class="navbar-brand" href="http://nps.dev/">Badlands Cohort | Promoter.io</a>
+		    <a class="navbar-brand"> Badlands Cohort | Promoter.io </a>
 		</div>
 	</div>
 </div>
 
 <div class="container">
 	<h4 class="week"> Week 5 </h4>
-	<h4 class="score"> Average Score: <?= $averageScore ?></h4>
+</div>
+
+<div class="container">
+		<h4 class="rate"> Response Rate: <?= $rate ?>% </h4>
+		<h4 class="score"> Average Score: <?= $averageScore ?> </h4>
 </div>
 
 <div class="container">
