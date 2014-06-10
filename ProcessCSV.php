@@ -86,8 +86,8 @@ function calcAVG($entries) {
 }
 
 function calcResponseRate($parsedData, $entries) {
-	$responseRate = number_format(count($entries) / count($parsedData)) * 100;
-	return $responseRate;
+	$responseRate = count($entries) / count($parsedData) * 100;
+	return number_format($responseRate);
 }
 
 
