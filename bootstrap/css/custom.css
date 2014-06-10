@@ -4,8 +4,13 @@
 
 .week {
 	float: left;
+	font-weight: bold;
 }
 
 .score {
+	float: left;
+}
+
+.rate {
 	float: right;
 }
