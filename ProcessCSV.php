@@ -42,10 +42,6 @@ class ProcessCSV {
 				
 				foreach ($entry as $key => $value) {
 
-					if (isset($entry['Score']) && !empty($entry['Score'])) {
-						$formatted['Score'] = $entry['Score'];
-					}
-				
 					if (isset($entry['First Name'])) {
 						$formatted['First Name'] = $entry['First Name'];
 					}
@@ -58,6 +54,10 @@ class ProcessCSV {
 						$formatted['Email Address'] = $entry['Email Address'];
 					}
 				
+					if (isset($entry['Score'])) {
+						$formatted['Score'] = $entry['Score'];
+					}
+
 					if (isset($entry['Comment'])) {
 						$formatted['Comment'] = $entry['Comment'];
 					}
