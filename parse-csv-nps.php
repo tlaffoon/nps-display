@@ -25,17 +25,16 @@ $filename = '../data/week5.csv';
 /* 20*/	// Score	
 /* 21*/	// Comment
 
-// function parseCSV($filename) {
-// 	$array = [];
-// 	$handle = fopen($filename, 'r');
-// 	while(!feof($handle)) {
-// 		$row = fgetcsv($handle);
-// 		if (!empty($row)) {
-// 			$array[] = $row;
-// 		}
-// 	}
-// 	return $array;   
-// }
+function calcAVG($scores) {
+
+	foreach ($scores as $entries) {
+		foreach ($entries as $entry) {
+			$avg[] = $entries['Score'];
+		}
+	}
+
+	return number_format(array_sum($avg) / count($avg), 2, '.', '');
+}
 
 function parseCSV($filename, $delimiter=',')
 {
@@ -61,19 +60,11 @@ function parseCSV($filename, $delimiter=',')
     return $data;
 }
 
-function Test($parsed) {
-	foreach ($rowNum as $array) {
-		foreach ($array as $columnHeader => $value) {
-			echo "<p> $columnHeader --> $value";
-		}
-	}
-}
-
 function makeEntries($parsed) {
-	
 
 	foreach ($parsed as $entry) {
 		$formatted = [];
+		$nonrespondents = [];
 
 		if (!empty($entry['Score'])) {
 			
@@ -101,8 +92,9 @@ function makeEntries($parsed) {
 			}
 		}  
 
-		$entries[] = $formatted;
-
+		if (!empty($formatted)) {
+			$entries[] = $formatted;
+		}	
 	} 
 
 	return $entries;
@@ -112,6 +104,8 @@ $parsed = parseCSV($filename);
 
 $entries = makeEntries($parsed);
 
+$averageScore = calcAVG($entries);
+
 ?>
 
 <!DOCTYPE html>
@@ -119,24 +113,51 @@ $entries = makeEntries($parsed);
 <head>
 	<title>NPS Report</title>
 	<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./bootstrap/css/custom.css" rel="stylesheet">
 </head>
 <body>
 
+<div class="navbar">
+	<div class="container-fluid">
+		<div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		        <a class="navbar-brand" href="http://nps.dev/">Badlands Cohort | Promoter.io</a>
+		      </div>
+		      
+		      <form class="navbar-form navbar-right" role="search">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </form>
+	</div>
+</div>
+
 <div class="container">
-	<table class="table table-striped table-hover">
+	<h4 class="week"> Week 5 </h4>
+	<h4 class="score"> Average Score: <?= $averageScore ?></h4>
+</div>
+
+<div class="container">
+	<table class="table table-striped">
 		<tr>
-			<th>Score</th>
-			<th>First Name</th>
-			<th>Last Name</th>
+			<th>Score</th>			
+			<th>First</th>
+			<th>Last</th>
 			<th>Email</th>
 			<th>Comment</th>
 		</tr>
 
 		<tr>
 			<? foreach ($entries as $entry) : ?>
-				<? foreach ($entry as $value) : ?>
-					<td><?= htmlspecialchars(strip_tags($value)) ?></td>
-				<? endforeach; ?>
+					<? foreach ($entry as $value) : ?>
+						<td><?= htmlspecialchars(strip_tags($value)) ?></td>
+					<? endforeach; ?>
 		</tr>
 			<? endforeach; ?>
 	</table>
