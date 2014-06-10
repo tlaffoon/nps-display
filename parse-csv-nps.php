@@ -1,16 +1,19 @@
 <?php
-// parse-csv.php
 
 include('./ProcessCSV.php');
 
+function loopFiles() {
+	// foreach file in ../data/cohort/week#.csv
+	// loop through files and create objects
+	// parse variables
+	// output data
+	return "";
+}
+
 $objectOne = new ProcessCSV('../data/week5.csv');
-
 $parsedData = $objectOne->parseCSV();
-
 $entries = $objectOne->makeEntries($parsedData);
-
 $averageScore = $objectOne->calcAVG($entries);
-
 $rate = $objectOne->calcResponseRate($parsedData, $entries);
 
 // $parsed = parseCSV($filename);
@@ -42,8 +45,8 @@ $rate = $objectOne->calcResponseRate($parsedData, $entries);
 </div>
 
 <div class="container">
-		<h4 class="rate"> Response Rate: <?= $rate ?>% </h4>
-		<h4 class="score"> Average Score: <?= $averageScore ?> </h4>
+		<h5 class="rate"> Response Rate: <?= $rate ?>% </h5>
+		<h5 class="score"> Average Score: <?= $averageScore ?> </h5>
 </div>
 
 <div class="container">
