@@ -3,28 +3,6 @@
 
 $filename = '../data/week5.csv';
 
-/* 1 */	// Email Address	
-/* 2 */	// First Name	
-/* 3 */	// Last Name	
-/* 4 */	// GMTOFF	
-/* 5 */	// CONFIRM_IP	
-/* 6 */	// CC	
-/* 7 */	// REGION	
-/* 8 */	// LAST_CHANGED	
-/* 9 */	// LONGITUDE	
-/* 10*/	// MEMBER_RATING	
-/* 11*/	// CONFIRM_TIME	
-/* 12*/	// EUID	
-/* 13*/	// LATITUDE	
-/* 14*/	// TIMEZONE	
-/* 15*/	// OPTIN_IP	
-/* 16*/	// DSTOFF	
-/* 17*/	// LEID	
-/* 18*/	// Badlands	
-/* 19*/	// Status	
-/* 20*/	// Score	
-/* 21*/	// Comment
-
 function calcAVG($scores) {
 
 	foreach ($scores as $entries) {
@@ -101,9 +79,7 @@ function makeEntries($parsed) {
 }
 
 $parsed = parseCSV($filename);
-
 $entries = makeEntries($parsed);
-
 $averageScore = calcAVG($entries);
 
 ?>
@@ -155,9 +131,9 @@ $averageScore = calcAVG($entries);
 
 		<tr>
 			<? foreach ($entries as $entry) : ?>
-					<? foreach ($entry as $value) : ?>
-						<td><?= htmlspecialchars(strip_tags($value)) ?></td>
-					<? endforeach; ?>
+				<? foreach ($entry as $value) : ?>
+					<td><?= htmlspecialchars(strip_tags($value)) ?></td>
+				<? endforeach; ?>
 		</tr>
 			<? endforeach; ?>
 	</table>
