@@ -2,13 +2,13 @@
 
 include('./ProcessCSV.php');
 
-function loopFiles() {
-	// foreach file in ../data/cohort/week#.csv
-	// loop through files and create objects
-	// parse variables
-	// output data
-	return "";
-}
+// function loopFiles() {
+// 	// foreach file in ../data/cohort/week#.csv
+// 	// loop through files and create objects
+// 	// parse variables
+// 	// output data
+// 	return "";
+// }
 
 $objectOne = new ProcessCSV('../data/week5.csv');
 $parsedData = $objectOne->parseCSV();
@@ -40,23 +40,22 @@ $rate = $objectOne->calcResponseRate($parsedData, $entries);
 	</div>
 </div>
 
-<div class="container-fluid">
-	<h4 class="week"> Week 5 </h4>
-</div>
-
 <div class="container">
-		<h5 class="rate"> Response Rate: <?= $rate ?>% </h5>
-		<h5 class="score"> Average Score: <?= $averageScore ?> </h5>
+	<div class="row">
+		<div class="col-md-8"><p class="week"> Week 5 </p></div>
+		<div class="col-md-2"><p class="rate"> Response Rate: <?= $rate ?>% </p></div>
+		<div class="col-md-2"><p class="score"> Average Score: <?= $averageScore ?> </p></div>
+	</div>	
 </div>
 
 <div class="container">
 	<table class="table table-striped">
 		<tr>
-			<th>Score</th>			
 			<th>First</th>
 			<th>Last</th>
 			<th>Email</th>
-			<th>Comment</th>
+			<th>Score</th>			
+			<th id="comment-header">Comment</th>
 		</tr>
 
 		<tr>
